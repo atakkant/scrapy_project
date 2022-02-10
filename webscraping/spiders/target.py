@@ -36,10 +36,8 @@ class TargetSpider(scrapy.Spider):
             for q in questions:
                 question_dicts = {}
                 question = q.get('text')
-                print("question_text: %s"%question)
                 question_dicts['question'] = question
                 question_dicts['author'] = q.get('author').get('nickname')
-                print("author: %s"%question_dicts['author'])
                 answers = q.get('answers')
                 answer_list = []
                 for ans in answers:
@@ -74,7 +72,6 @@ class TargetSpider(scrapy.Spider):
         item['price'] = "".join(response.xpath('//span[@data-test="da-price--monthly-price"]/text()').getall())
         item['highlights'] = response.xpath('//div[@data-test="detailsTab"]//h3[contains(text(),"Highlights")]/following-sibling::ul/div/div//span/text()').getall()
         specs_html = response.xpath('//div[@data-test="detailsTab"]//h3[contains(text(),"Spec")]/following-sibling::div')
-        print("number of specs: %d"%len(specs_html))
         specs_list = []
         for spec in specs_html:
             spec_dict = {}

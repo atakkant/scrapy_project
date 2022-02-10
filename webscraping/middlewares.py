@@ -25,11 +25,6 @@ from itemadapter import is_item, ItemAdapter
 
 
 def infinite_scroll_down(driver,height,count=0):
-    #self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") #try except
-    #print("scroll couldn't be completed. Height is: %d"%height)
-    #x, y = pyautogui.position()
-
-    #pyautogui.scroll(1)
     total_height = int(driver.execute_script("return document.body.scrollHeight"))
     scroll_height = int(total_height/5)
     for i in range(1, total_height, scroll_height):
@@ -98,7 +93,7 @@ class SeleniumMiddleware(object):
             print(e)
             current_url = self.drivers[request.url].current_url
 
-        self.drivers[request.url].stop_client()    
+        self.drivers[request.url].stop_client()
         self.drivers[request.url].close()
         self.drivers[request.url].quit()
 
